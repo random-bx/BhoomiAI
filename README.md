@@ -1,13 +1,6 @@
 # 🌾 BhoomiAI  
 **AI-Powered Crop Yield Prediction & Optimization Platform**  
 
-![Repo Size](https://img.shields.io/github/repo-size/random-bx/BhoomiAI?color=green)  
-![Contributors](https://img.shields.io/github/contributors/random-bx/BhoomiAI?color=yellow)  
-![Issues](https://img.shields.io/github/issues/random-bx/BhoomiAI?color=red)  
-![Stars](https://img.shields.io/github/stars/random-bx/BhoomiAI?style=social)  
-
----
-
 ## ✨ Overview
 🚜 **BhoomiAI** is a futuristic **AgriTech platform** developed during *Smart India Hackathon 2025*.  
 It blends **AI, ML, and scalable backend frameworks** to help farmers and policymakers **predict & optimize crop yield**.  
