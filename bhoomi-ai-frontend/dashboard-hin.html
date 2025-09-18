@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>डैशबोर्ड - भूमिAI</title>
+    <link rel="stylesheet" href="dashboard.style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container navbar-container">
+            <a href="index.html" class="logo">🌱 भूमिAI</a>
+            <div id="user-info" class="user-info">
+                <span>स्वागत है, <span id="user-name">किसान</span>!</span>
+                <button id="logout-btn" class="btn-logout">लॉगआउट</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container container-main">
+        <!-- The main application grid -->
+        <div class="dashboard-grid">
+            
+            <!-- Column 1: Weather & Required Info -->
+            <div class="info-card card">
+                <h2>चरण 1: स्थितियाँ प्राप्त करें</h2>
+                <button id="weather-btn" class="btn btn-secondary">मौसम ताज़ा करें</button>
+                
+                <div class="weather-display">
+                    <p><strong>स्थान:</strong> <span id="location-display">--</span></p>
+                    <div id="weather-results" class="weather-results-grid hidden">
+                        <div class="weather-item">
+                            <p class="weather-value"><span id="temp-val">--</span>°C</p>
+                            <p class="weather-label">तापमान</p>
+                        </div>
+                        <div class="weather-item">
+                            <p class="weather-value"><span id="humidity-val">--</span>%</p>
+                            <p class="weather-label">आर्द्रता</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="area">खेती का क्षेत्र (हेक्टेयर)</label>
+                    <input type="number" id="area" placeholder="उदा., 3500">
+                </div>
+            </div>
+
+            <!-- Column 2: Prediction Inputs -->
+            <div class="form-card card">
+                <h2>चरण 2: खेत का डेटा दर्ज करें</h2>
+                <p class="card-description">अपने राज्य-स्तरीय और मिट्टी का विवरण प्रदान करें।</p>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>उर्वरक उपयोग (N)</label>
+                        <input type="number" id="n-input" placeholder="उदा., 90.0">
+                    </div>
+                    <div class="form-group">
+                        <label>उर्वरक उपयोग (P)</label>
+                        <input type="number" id="p-input" placeholder="उदा., 28.0">
+                    </div>
+                    <div class="form-group">
+                        <label>उर्वरक उपयोग (K)</label>
+                        <input type="number" id="k-input" placeholder="उदा., 17.0">
+                    </div>
+                    <div class="form-group">
+                        <label>फसल सघनता (%)</label>
+                        <input type="number" id="intensity-input" placeholder="उदा., 160.0">
+                    </div>
+                    <div class="form-group">
+                        <label for="season">मौसम</label>
+                        <select id="season">
+                            <option>खरीफ</option>
+                            <option>सर्दी</option>
+                            <option>पतझड़</option>
+                        </select>
+                    </div>
+                </div>
+                <button id="predict-btn" class="btn btn-primary">मेरी उपज का अनुमान लगाएं</button>
+            </div>
+
+            <!-- Column 3: Prediction Result -->
+            <div class="result-card card">
+                 <h2>चरण 3: अपनी भविष्यवाणी देखें</h2>
+                 <p class="card-description">इस मौसम के लिए हमारे AI मॉडल का पूर्वानुमान।</p>
+                 <div id="prediction-result" class="hidden">
+                    <p id="yield-value">--.--</p>
+                    <p id="yield-units">किग्रा/हेक्टेयर</p>
+                </div>
+                <p id="placeholder-text">भविष्यवाणी यहां दिखाई देगी...</p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Axios and GSAP libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <!-- Your custom dashboard logic -->
+    <script src="dashboard.js"></script>
+</body>
+</html>

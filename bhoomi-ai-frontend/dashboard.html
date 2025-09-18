@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - BhoomiAI</title>
+    <link rel="stylesheet" href="dashboard.style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container navbar-container">
+            <a href="index.html" class="logo">🌱 BhoomiAI</a>
+            <div id="user-info" class="user-info">
+                <span>Welcome, <span id="user-name">Farmer</span>!</span>
+                <button id="logout-btn" class="btn-logout">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container container-main">
+        <!-- The main application grid -->
+        <div class="dashboard-grid">
+            
+            <!-- Column 1: Weather & Required Info -->
+            <div class="info-card card">
+                <h2>Step 1: Get Conditions</h2>
+                <button id="weather-btn" class="btn btn-secondary">Refresh Weather</button>
+                
+                <div class="weather-display">
+                    <p><strong>Location:</strong> <span id="location-display">--</span></p>
+                    <!-- <button id="weather-btn" class="btn btn-secondary">Fetch Live Weather</button> -->
+                    <div id="weather-results" class="weather-results-grid hidden">
+                        <div class="weather-item">
+                            <p class="weather-value"><span id="temp-val">--</span>°C</p>
+                            <p class="weather-label">Temperature</p>
+                        </div>
+                        <div class="weather-item">
+                            <p class="weather-value"><span id="humidity-val">--</span>%</p>
+                            <p class="weather-label">Humidity</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="area">Cultivated Area (Hectares)</label>
+                    <input type="number" id="area" placeholder="e.g., 3500">
+                </div>
+            </div>
+
+            <!-- Column 2: Prediction Inputs -->
+            <div class="form-card card">
+                <h2>Step 2: Enter Farm Data</h2>
+                <p class="card-description">Provide your state-level and soil details.</p>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Fertilizer Usage (N)</label>
+                        <input type="number" id="n-input" placeholder="e.g., 90.0">
+                    </div>
+                    <div class="form-group">
+                        <label>Fertilizer Usage (P)</label>
+                        <input type="number" id="p-input" placeholder="e.g., 28.0">
+                    </div>
+                    <div class="form-group">
+                        <label>Fertilizer Usage (K)</label>
+                        <input type="number" id="k-input" placeholder="e.g., 17.0">
+                    </div>
+                    <div class="form-group">
+                        <label>Cropping Intensity (%)</label>
+                        <input type="number" id="intensity-input" placeholder="e.g., 160.0">
+                    </div>
+                    <div class="form-group">
+                        <label for="season">Season</label>
+                        <select id="season">
+                            <option>Kharif</option>
+                            <option>Winter</option>
+                            <option>Autumn</option>
+                        </select>
+                    </div>
+                </div>
+                <button id="predict-btn" class="btn btn-primary">Predict My Yield</button>
+            </div>
+
+            <!-- Column 3: Prediction Result -->
+            <div class="result-card card">
+                 <h2>Step 3: See Your Prediction</h2>
+                 <p class="card-description">Our AI model's forecast for this season.</p>
+                 <div id="prediction-result" class="hidden">
+                    <p id="yield-value">--.--</p>
+                    <p id="yield-units">kg/ha</p>
+                </div>
+                <p id="placeholder-text">Prediction will appear here...</p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Axios and GSAP libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <!-- Your custom dashboard logic -->
+    <script src="dashboard.js"></script>
+</body>
+</html>

@@ -4,6 +4,7 @@ com\spring\bhoomiAI\entity\WeatherData$WeatherDataBuilder.class
 com\spring\bhoomiAI\dto\response\WeatherResponseDTO.class
 com\spring\bhoomiAI\entity\User$UserBuilder.class
 com\spring\bhoomiAI\exception\ResourceNotFoundException.class
+com\spring\bhoomiAI\config\WebConfig.class
 com\spring\bhoomiAI\entity\Prediction$PredictionBuilder.class
 com\spring\bhoomiAI\dto\response\UserResponseDTO$UserResponseDTOBuilder.class
 com\spring\bhoomiAI\dto\response\WeatherResponseDTO$WeatherResponseDTOBuilder.class

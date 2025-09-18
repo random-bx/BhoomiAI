@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Started - BhoomiAI</title>
+    <link rel="stylesheet" href="login.style.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-card">
+            <a href="index.html" class="logo">🌱 BhoomiAI</a>
+            <h2>Welcome, Farmer!</h2>
+            <p class="description">Enter your details to proceed to your personalized dashboard.</p>
+            <div class="form-group">
+                <label for="name">Your Full Name</label>
+                <input type="text" id="name" placeholder="Ramesh Kumar">
+            </div>
+            <div class="form-group">
+                <label for="email">Your Email Address</label>
+                <input type="email" id="email" placeholder="ramesh@farm.com">
+            </div>
+            <div class="form-group">
+                <label for="location">Your Primary Location (e.g., City, State)</label>
+                <input type="text" id="location" placeholder="Pune, India">
+            </div>
+            <button id="identify-btn" class="btn btn-primary">Continue to Dashboard</button>
+            <p id="status-message"></p>
+        </div>
+    </div>
+
+    <!-- We need Axios for the API call -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        const identifyBtn = document.getElementById('identify-btn');
+        const statusMessage = document.getElementById('status-message');
+
+        identifyBtn.addEventListener('click', async () => {
+            const userData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                location: document.getElementById('location').value,
+            };
+
+            if (!userData.email || !userData.name || !userData.location) {
+                statusMessage.textContent = 'Please fill in all fields.';
+                return;
+            }
+
+            statusMessage.textContent = 'Verifying details...';
+            identifyBtn.disabled = true;
+
+            try {
+                const response = await axios.post('http://localhost:8080/api/v1/users/identify', userData);
+                
+                // Save user data to localStorage to pass it to the dashboard
+                localStorage.setItem('bhoomiAiUser', JSON.stringify(response.data));
+
+                // Redirect to the dashboard page!
+                window.location.href = 'dashboard.html';
+
+            } catch (error) {
+                console.error(error);
+                statusMessage.textContent = 'Error: Could not connect to server.';
+                identifyBtn.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>

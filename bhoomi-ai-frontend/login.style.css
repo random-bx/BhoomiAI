@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display;swap');
+
+/* --- THEME & COLOR VARIABLES (Consistent with index page) --- */
+:root {
+    --primary-green: #22c55e;
+    --dark-green: #16a34a;
+    --text-on-dark-bg: #FFFFFF;
+    --text-dark-card: #0f172a; /* Dark text for inside the card */
+    --text-muted-card: #64748b; /* Muted text for inside the card */
+
+    /* Glassmorphism Variables */
+    --card-bg-glass: rgba(255, 255, 255, 0.5); /* Semi-transparent white */
+    --border-glass: rgba(255, 255, 255, 0.3);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-on-dark-bg); /* Default text color is white for the background */
+    
+    /* --- APPLYING THE SAME BACKGROUND IMAGE AND OVERLAY --- */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('assets/farm-background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    
+    /* Center the login card vertically and horizontally */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+/* --- THE LOGIN CARD (Now Glassmorphic) --- */
+.login-card {
+    background: var(--card-bg-glass);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--border-glass);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    border-radius: 20px;
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 450px;
+}
+
+.logo {
+    display: block;
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-on-dark-bg); /* Logo text is now white */
+    text-decoration: none;
+    margin-bottom: 1.5rem;
+}
+
+.login-card h2 {
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-dark-card); /* Use the dark card text color */
+    margin-bottom: 0.5rem;
+}
+
+.login-card .description {
+    text-align: center;
+    color: var(--text-muted-card); /* Use the muted card text color */
+    margin-bottom: 2rem;
+}
+
+/* --- STYLING THE FORM FOR THE NEW THEME --- */
+.form-group { margin-bottom: 1.5rem; }
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--text-dark-card); /* Label text is dark */
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 15px;
+    background: rgba(255, 255, 255, 0.5); /* Slightly transparent input background */
+    border: 1px solid var(--border-glass);
+    border-radius: 10px;
+    color: var(--text-dark); /* User types in a dark color */
+    font-size: 1rem;
+    transition: all 0.2s ease-out;
+}
+.form-group input::placeholder { color: #9ca3af; }
+.form-group input:focus {
+    outline: none;
+    border-color: var(--primary-green);
+    box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.3);
+}
+
+.btn {
+    display: block;
+    width: 100%;
+    padding: 14px 32px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: all 0.2s ease-out;
+}
+
+.btn-primary {
+    color: white;
+    background-image: linear-gradient(45deg, var(--primary-green), var(--dark-green));
+    box-shadow: 0 4px 20px rgba(16, 185, 129, 0.5);
+}
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 7px 25px rgba(16, 185, 129, 0.5);
+}
+
+#status-message {
+    text-align: center;
+    margin-top: 1rem;
+    font-weight: 500;
+    color: #f87171; /* A standard red for errors */
+}

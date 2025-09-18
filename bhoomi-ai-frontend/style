@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display;swap');
+
+/* --- THEME WITH SUBTLE TEXTURE & GLASSMORPHISM --- */
+:root {
+    --primary-green: #22c55e;
+    --dark-green: #16a34a;
+    --text-on-dark-bg: #FFFFFF; /* All main text is now white on the background */
+    --text-muted-on-dark-bg: #E5E7EB; /* Lighter gray for subtitles */
+
+    /* NEW: Dedicated colors for cards to make them darker */
+    --card-text-dark: #1f2937;
+    --card-text-muted: #4b5563;
+
+    /* Variables for Glassmorphism */
+    --card-bg-glass: rgba(255, 255, 255, 0.5); /* CHANGED: Was 0.6, now 0.5 for more transparency */
+    --border-glass: rgba(255, 255, 255, 0.3); /* CHANGED: Softer border */
+    
+    --border-color: #e2e8f0;
+    --shadow: 0 10px 15px -3px rgb(0 0 0 / 0.05);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-on-dark-bg); /* Use the new white text variable */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('assets/farm-background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    line-height: 1.7;
+}
+
+.container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+
+/* --- GLASSMORPHIC NAVBAR (MORE TRANSPARENT) --- */
+.navbar {
+    background: rgba(17, 24, 39, 0.3); /* CHANGED: Darker and more transparent */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Lighter border for dark bg */
+    padding: 1rem 0;
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+.navbar-container { display: flex; justify-content: space-between; align-items: center; }
+.logo { font-size: 1.5rem; font-weight: 700; color: var(--text-on-dark-bg); text-decoration: none; } /* CHANGED: White logo */
+.btn { text-decoration: none; transition: all 0.2s ease-out; }
+
+/* --- BUTTONS --- */
+/* (Button styles are good, no changes needed here) */
+.btn-primary-nav, .btn-primary {
+    display: inline-block;
+    padding: 14px 32px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: white;
+    background-image: linear-gradient(45deg, var(--primary-green), #059669);
+    box-shadow: 0 4px 20px rgba(16, 185, 129, 0.4);
+    border: none;
+}
+.btn-primary-nav { padding: 10px 24px; font-size: 1rem;}
+.btn-primary:hover, .btn-primary-nav:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 7px 25px rgba(16, 185, 129, 0.4);
+}
+
+/* --- HERO SECTION --- */
+/* (Hero styles are good as they use the main body text color) */
+.hero { text-align: center; padding: 7rem 0; }
+.hero-title { font-size: clamp(3rem, 6vw, 4.5rem); font-weight: 800; line-height: 1.2; color: var(--text-on-dark-bg); }
+.hero-subtitle { font-size: 1.25rem; color: var(--text-muted-on-dark-bg); max-width: 650px; margin: 1.5rem auto 2.5rem auto; }
+
+/* --- FEATURES SECTION --- */
+.features-section { padding: 6rem 0; }
+.section-title { text-align: center; font-size: 2.8rem; font-weight: 700; margin-bottom: 4rem; color: var(--text-on-dark-bg); }
+.features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+
+.feature-card {
+    background: var(--card-bg-glass); /* Using the more transparent glass */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 2.5rem;
+    text-align: left;
+    border: 1px solid var(--border-glass);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 0 25px 0 rgba(255, 255, 255, 0.1); /* White glow */
+}
+
+/* CARD FONT COLOR FIX */
+.feature-card h3 { font-size: 1.6rem; margin-bottom: 0.5rem; color: var(--card-text-dark); } /* CHANGED */
+.feature-card p { color: var(--card-text-muted); } /* CHANGED */
+
+.feature-icon {
+    width: 64px; height: 64px; margin-bottom: 1.5rem;
+    border-radius: 16px; display: flex; align-items: center; justify-content: center;
+}
+.feature-icon.blue { background-color: #dbeafe; color: #3b82f6; }
+.feature-icon.green { background-color: #dcfce7; color: #22c55e; }
+.feature-icon.yellow { background-color: #fef9c3; color: #f59e0b; }
+.feature-icon svg { width: 36px; height: 36px; stroke-width: 2; }
+
+
+/* --- CTA SECTION (Darker Text) --- */
+.cta-section {
+    padding: 6rem 1rem;
+    text-align: center;
+    margin: 4rem 2rem;
+    border-radius: 30px;
+    position: relative;
+    overflow: hidden;
+}
+.cta-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 30px;
+    background: rgba(255, 255, 255, 0.7); /* CHANGED: More transparent glass */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 1;
+}
+.cta-background { /* (No changes, background is fine) */ }
+.cta-content { position: relative; z-index: 2; }
+
+/* CTA FONT COLOR FIX */
+.cta-section h2 { font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; color: var(--text-dark); } /* CHANGED */
+.cta-section p { font-size: 1.1rem; opacity: 0.9; margin-bottom: 2rem; color: var(--text-muted); } /* CHANGED */
+.cta-section .btn-primary { /* (No changes, button is fine) */ }
+
+/* FOOTER */
+.footer { text-align: center; padding: 3rem; color: var(--text-muted-on-dark-bg); font-size: 0.9rem; }

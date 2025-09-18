@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display;swap');
+
+/* --- ELEGANT DARK THEME VARIABLES --- */
+:root { 
+    --primary-green: #22c55e;
+    --dark-green: #16a34a;
+    --text-light: #f3f4f6;
+    --text-muted: #9ca3af;
+    --border-glass: rgba(255, 255, 255, 0.15);
+    --bg-glass-dark: rgba(17, 24, 39, 0.5);
+    --shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-light);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('assets/farm-background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+.container-main { padding-top: 2rem; padding-bottom: 2rem; }
+
+/* --- NAVBAR FOR DARK MODE --- */
+.navbar {
+    background: rgba(17, 24, 39, 0.5);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-glass);
+    padding: 1rem 0;
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+.navbar-container { display: flex; justify-content: space-between; align-items: center; }
+.logo { font-size: 1.5rem; font-weight: 700; color: white; text-decoration: none; }
+.user-info { display: flex; align-items: center; gap: 1rem; color: var(--text-muted); }
+
+/* --- BUTTONS --- */
+/* Base styles shared by all buttons */
+.btn {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    padding: 12px 28px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: all 0.2s ease-out;
+}
+.btn-logout { background: transparent; border: 1px solid var(--border-glass); color: var(--text-muted); padding: 8px 16px; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.2s ease; }
+.btn-logout:hover { background-color: rgba(255, 255, 255, 0.1); color: white; }
+
+.btn-primary { 
+    background-image: linear-gradient(45deg, var(--primary-green), var(--dark-green));
+    color: white;
+    box-shadow: 0 0 15px rgba(34, 197, 94, 0.3); /* Softer glow */
+}
+.btn-primary:hover { transform: translateY(-3px) scale(1.05); }
+
+/* --- CHANGED --- */
+/* New Style for the secondary "Weather" button */
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text-light);
+    border: 1px solid var(--border-glass);
+}
+.btn-secondary:hover { background: rgba(255, 255, 255, 0.15); transform: translateY(-2px); }
+
+
+/* --- DARK GLASS CARDS --- */
+.card {
+    background: var(--bg-glass-dark);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    padding: 2rem;
+    border: 1px solid var(--border-glass);
+}
+.card h2 {
+    font-size: 1.5rem; font-weight: 600; color: white; margin-bottom: 0.5rem;
+    border-bottom: 1px solid var(--primary-green); padding-bottom: 0.5rem; display: inline-block;
+}
+.card .card-description { color: var(--text-muted); margin-bottom: 1.5rem; font-size: 0.9rem; }
+
+/* --- DASHBOARD LAYOUT --- */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 1fr;
+    gap: 2rem;
+    align-items: start;
+}
+@media (max-width: 1024px) { .dashboard-grid { grid-template-columns: 1fr; } }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+@media (max-width: 640px) { .form-grid { grid-template-columns: 1fr; } }
+
+/* --- CUSTOM FORM FOR DARK MODE --- */
+.form-group { margin-bottom: 1rem; }
+.form-group:last-of-type { 
+    margin-bottom: 1.5rem; /* --- CHANGED --- Added space after the last form group (Season) */
+}
+.form-group label { display: block; margin-bottom: 0.5rem; font-size: 0.875rem; font-weight: 500; color: var(--text-muted); }
+.form-group input, .form-group select {
+    width: 100%; padding: 10px 12px;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--border-glass);
+    border-radius: 8px; font-size: 1rem; color: white;
+}
+.form-group input::placeholder { color: #6b7280; }
+.form-group input:focus, .form-group select:focus {
+    outline: none;
+    border-color: var(--primary-green);
+    box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.3);
+}
+
+/* WEATHER & RESULT DISPLAYS */
+.weather-display p { color: var(--text-muted); }
+.weather-results-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem; text-align: center; }
+.weather-value { font-size: 1.8rem; font-weight: 600; color: white; }
+.weather-label { font-size: 0.875rem; color: var(--text-muted); margin-top: -5px; }
+
+#prediction-result { text-align: center; margin-top: 1rem; }
+#yield-value {
+    font-size: 4rem;
+    font-weight: 700;
+    line-height: 1;
+    color: #4ade80;
+    /* --- CHANGED --- Softer, more elegant glow */
+    text-shadow: 0 0 15px rgba(74, 222, 128, 0.5); 
+}
+#yield-units { color: var(--text-muted); }
+.hidden { display: none; }

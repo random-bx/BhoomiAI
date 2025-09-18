@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>शुरू करें - भूमिAI</title>
+    <link rel="stylesheet" href="login.style.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-card">
+            <a href="index.html" class="logo">🌱 भूमिAI</a>
+            <h2>स्वागत है, किसान!</h2>
+            <p class="description">अपने व्यक्तिगत डैशबोर्ड पर आगे बढ़ने के लिए अपना विवरण दर्ज करें।</p>
+            <div class="form-group">
+                <label for="name">आपका पूरा नाम</label>
+                <input type="text" id="name" placeholder="रमेश कुमार">
+            </div>
+            <div class="form-group">
+                <label for="email">आपका ईमेल पता</label>
+                <input type="email" id="email" placeholder="ramesh@farm.com">
+            </div>
+            <div class="form-group">
+                <label for="location">आपका प्राथमिक स्थान (उदा., शहर, राज्य)</label>
+                <input type="text" id="location" placeholder="पुणे, भारत">
+            </div>
+            <button id="identify-btn" class="btn btn-primary">डैशबोर्ड पर जारी रखें</button>
+            <p id="status-message"></p>
+        </div>
+    </div>
+
+    <!-- We need Axios for the API call -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        const identifyBtn = document.getElementById('identify-btn');
+        const statusMessage = document.getElementById('status-message');
+
+        identifyBtn.addEventListener('click', async () => {
+            const userData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                location: document.getElementById('location').value,
+            };
+
+            if (!userData.email || !userData.name || !userData.location) {
+                statusMessage.textContent = 'कृपया सभी फ़ील्ड भरें।';
+                return;
+            }
+
+            statusMessage.textContent = 'विवरण सत्यापित किया जा रहा है...';
+            identifyBtn.disabled = true;
+
+            try {
+                const response = await axios.post('http://localhost:8080/api/v1/users/identify', userData);
+                
+                // Save user data to localStorage to pass it to the dashboard
+                localStorage.setItem('bhoomiAiUser', JSON.stringify(response.data));
+
+                // Redirect to the dashboard page!
+                window.location.href = 'dashboard.html';
+
+            } catch (error) {
+                console.error(error);
+                statusMessage.textContent = 'त्रुटि: सर्वर से कनेक्ट नहीं हो सका।';
+                identifyBtn.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>
